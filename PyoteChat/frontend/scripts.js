@@ -1,3 +1,5 @@
+const BASE_URL = 'https://your-app-name.onrender.com'; // Replace with your Render app URL
+
 document.getElementById('postForm').addEventListener('submit', function(event) {
     event.preventDefault();
 
@@ -10,7 +12,7 @@ document.getElementById('postForm').addEventListener('submit', function(event) {
     formData.append('content', content);
     formData.append('image', image);
 
-    fetch('http://localhost:3000/api/posts', {
+    fetch(`${BASE_URL}/api/posts`, {
         method: 'POST',
         body: formData
     })
@@ -31,7 +33,7 @@ document.getElementById('postForm').addEventListener('submit', function(event) {
 });
 
 function loadPosts() {
-    fetch('http://localhost:3000/api/posts')
+    fetch(`${BASE_URL}/api/posts`)
     .then(response => {
         if (!response.ok) {
             throw new Error('Failed to fetch posts');
@@ -46,7 +48,7 @@ function loadPosts() {
             postElement.classList.add('post');
             postElement.innerHTML = `
                 <h3>${post.title}</h3>
-                <img src="http://localhost:3000/${post.image_path}" alt="${post.title}">
+                <img src="${BASE_URL}/${post.image_path}" alt="${post.title}">
                 <p>${post.content}</p>
             `;
             postsContainer.appendChild(postElement);
