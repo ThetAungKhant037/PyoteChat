@@ -5,7 +5,6 @@ const multer = require('multer');
 const mysql = require('mysql');
 const cors = require('cors');
 const path = require('path');
-const fs = require('fs'); // Import fs module for file operations
 
 // Initialize express app
 const app = express();
@@ -18,10 +17,10 @@ app.use(express.static(path.join(__dirname, '..', 'frontend'))); // Serve static
 
 // MySQL database connection setup
 const connection = mysql.createConnection({
-    host: 'localhost', // Replace with your MySQL host
-    user: 'root', // Replace with your MySQL username
-    password: 'root', // Replace with your MySQL password
-    database: 'image_text_board' // Replace with your MySQL database name
+    host: process.env.MYSQL_HOST,
+    user: process.env.MYSQL_USER,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE
 });
 
 connection.connect((err) => {
@@ -45,7 +44,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Example API routes
-
 // Create a new post
 app.post('/api/posts', upload.single('image'), (req, res) => {
     const { title, content } = req.body;
@@ -72,49 +70,6 @@ app.get('/api/posts', (req, res) => {
             return;
         }
         res.status(200).json(results);
-    });
-});
-
-// Delete a post
-app.delete('/api/posts/:postId', (req, res) => {
-    const postId = req.params.postId;
-
-    // First, retrieve image_path from database
-    connection.query('SELECT image_path FROM posts WHERE id = ?', [postId], (err, results) => {
-        if (err) {
-            console.error('Error fetching image path:', err);
-            res.status(500).send('Error fetching image path');
-            return;
-        }
-
-        if (results.length === 0) {
-            res.status(404).send('Post not found');
-            return;
-        }
-
-        const imagePath = results[0].image_path;
-
-        // Delete record from database
-        connection.query('DELETE FROM posts WHERE id = ?', [postId], (err, result) => {
-            if (err) {
-                console.error('Error deleting post:', err);
-                res.status(500).send('Error deleting post');
-                return;
-            }
-
-            // Delete file from server
-            fs.unlink(path.join(__dirname, 'uploads', imagePath), (err) => {
-                if (err) {
-                    console.error('Error deleting file:', err);
-                    // Handle error
-                    res.status(500).send('Error deleting file');
-                    return;
-                }
-
-                console.log('File deleted successfully');
-                res.status(200).json({ message: 'Post and file deleted successfully' });
-            });
-        });
     });
 });
 
