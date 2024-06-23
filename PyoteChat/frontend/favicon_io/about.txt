@@ -1,0 +1,9 @@
+This favicon was generated using the following font:
+
+- Font Title: Life Savers
+- Font Author: Copyright (c) 2012, Pablo Impallari (www.impallari.com|impallari@gmail.com),
+Copyright (c) 2012, Rodrigo Fuenzalida (www.rfuenzalida.com|hello@rfuenzalida.com), 
+Copyright (c) 2012, Igino Marini. (www.ikern.com|mail@iginomarini.com),
+with Reserved Font Name Life Savers.
+- Font Source: https://fonts.gstatic.com/s/lifesavers/v20/ZXu_e1UftKKabUQMgxAal8HXOS5Tk8fIpPRW.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))

@@ -1,0 +1,129 @@
+* {
+    box-sizing: border-box;
+    word-break: break-word;
+    line-height: 1.5rem;
+    font-size: 15px;
+  }
+  
+  :root {
+    --c-green: #7fff00;
+    --c-pink: #ff1493;
+    --c-purple: #8a2be2;
+    --c-lilac: #968AFF;
+    --c-white: #E8E8E8;
+    --c-greenish: #C7FF66;
+    --c-green-neon: #ACFF3F;
+    --c-pinkish: #FF66C1;
+    --c-light-pink: #FEAAFF;
+  }
+  
+  body {
+    background: radial-gradient(circle, rgba(232,232,232,1) 0%, rgba(172,255,63,1) 37%, rgba(199,255,102,1) 48%, rgba(255,102,193,1) 65%, rgba(254,170,255,1) 80%, rgba(150,138,255,1) 94%);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+  }
+  
+  section {
+    font-family: 'Michroma', sans-serif;
+    display: flex;
+    flex-direction: column;
+    max-width: 600px;
+    font-weight: 900;
+    gap: 50px;
+  }
+  
+  .dashboard, .tabcontent {
+    width: 100%;
+    height: fit-content;
+    background-color: var(--c-white);
+    border: 2px solid black;
+  }
+  
+  .window-bar, .item-bar {
+    background-color: var(--c-lilac);
+    border: 2px solid black;
+    margin: 4px;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    font-size: 14px;
+    height: 35px;
+    padding: 2px 4px;
+  }
+  
+  .window-bar button, .item-bar span {
+    text-align: center;
+    width: 30px;
+    height: 25px;
+    background-color: var(--c-light-pink);
+    border: 2px solid black;
+    cursor: pointer;
+  }
+  
+  .profile {
+    margin: 8px;
+  }
+  
+  .title {
+    color: var(--c-pinkish);
+    text-shadow: -4px 2px 4px rgba(0, 0, 0, 0.82);
+    font-family: 'Orbitron', sans-serif;
+    line-height: 3rem;
+    font-weight: 900;
+    font-size: 40px;
+  }
+  
+  .tabs {
+    display: block;
+    margin: 8px;
+  }
+  
+  .tabs > * {
+    padding: 1rem;
+  }
+  
+  .tab {
+    font-family: 'Michroma', sans-serif;
+    display: inline-block;
+    width: 100%;
+    background: var(--c-light-pink);
+    padding: 10px 15px;
+    font-size: 15px;
+    cursor: pointer;
+    margin-bottom: 5px;
+  }
+  
+  .tabs button.active {
+    background-color: var(--c-pinkish);
+  }
+  
+  .tabcontent {
+    display: none;
+    font-weight: 400;
+  }
+  
+  .inside {
+    margin: 10px;
+  }
+  
+  @media (max-width: 500px) {
+    .window-bar, .item-bar {
+      height: 50px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .tabs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5px;
+    }
+    
+    .tab {
+      margin-bottom: 0;
+    }
+  }
+  
